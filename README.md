@@ -11,7 +11,7 @@ This project provides a complete infrastructure-as-code solution for deploying a
 - **Ingress and Monitoring**: Deploys NGINX Ingress Controller and Prometheus for monitoring.
 - **Modular and Extensible**: Uses Terraform modules and templating for easy customization.
 
-## How It Works
+## How It Works 
 
 1. **VPC Setup**:  
    The `vpc.tf` file provisions a VPC, public/private subnets, route tables, internet/NAT gateways, and associates them for EKS networking.
@@ -128,3 +128,4 @@ terraform destroy
 ## License
 
 MIT or your preferred license.
+
