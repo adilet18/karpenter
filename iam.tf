@@ -400,8 +400,8 @@ resource "aws_iam_role_policy" "sre_agent_assume_targets" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
-        Action = "sts:AssumeRole"
+        Effect   = "Allow"
+        Action   = "sts:AssumeRole"
         Resource = "arn:aws:iam::851725289849:role/eks"
       }
     ]
