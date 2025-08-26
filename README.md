@@ -127,5 +127,7 @@ terraform destroy
 
 ## License
 
-MIT
+
+MIT or your preferred license.
+
 

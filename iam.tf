@@ -371,3 +371,39 @@ resource "aws_iam_policy" "additional" {
     }
   )
 }
+
+
+# Central account role: SreAgentBaseRole
+# This role can be assumed by an allowed principal (e.g., FastAPI instance role)
+resource "aws_iam_role" "sre_agent_base_role" {
+  name = "SreAgentBaseRole"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "eks.amazonaws.com" # или ec2.amazonaws.com, зависит где агент крутится
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy" "sre_agent_assume_targets" {
+  name = "AllowAssumeSreAgentExecutionRoles"
+  role = aws_iam_role.sre_agent_base_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = "sts:AssumeRole"
+        Resource = "arn:aws:iam::851725289849:role/eks"
+      }
+    ]
+  })
+}
